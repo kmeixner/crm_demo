@@ -35,8 +35,20 @@ switch ($strAction) {
 		
 	case 'add_contact':
 	
+		$iId = $objAPI->addContact(
+			$_REQUEST['firstname'],
+			$_REQUEST['lastname'],
+			$_REQUEST['email'],
+			$_REQUEST['phone']
+		);
 		
-		echo $objAPI->showMessage('TO DO: add_contact.');	
+		if (!empty($iId)) {
+		  echo $objAPI->showMessage($iId);
+		}
+		else {
+		  echo $objAPI->showError($objAPI->getError());		
+		}
+		
 		break;
 		
 	case 'add_organization':
