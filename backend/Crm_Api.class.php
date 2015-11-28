@@ -9,14 +9,6 @@ class Crm_Api {
 		return;
 	}
 	
-	function main() {
-	
-		$strAction = $_REQUEST['action'];
-		
-		if (empty($strAction)) {
-		}
-	}
-	
 	/**
 	 * Returns a JSON format success/error message.
 	 *

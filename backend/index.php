@@ -13,10 +13,50 @@ $objAPI = new Crm_Api();
 //$result = $objAPI->deleteOrganization(2);
 //echo var_export($result, TRUE);
 
-$result = $objAPI->updateOrganization(5,'Smurfyland','www.smurfy.com');
+//$result = $objAPI->updateOrganization(5,'Smurfyland','www.smurfy.com');
+//echo var_export($result, TRUE)
 
-echo var_export($result, TRUE)
+$strAction = $_REQUEST['action'];
 
+if (empty($strAction)) {
+	echo $objAPI->showMessage('Action is a required parameter',FALSE);
+	die();
+}
 
+switch ($strAction) {
+	
+	case 'fetch_contacts':
+		echo $objAPI->getContacts();
+		break;
+		
+	case 'fetch_organizations':
+		echo $objAPI->getOrganizations();
+		break;
+		
+	case 'add_contact':
+		echo $objAPI->showMessage('TO DO: add_contact.');	
+		break;
+		
+	case 'add_organization':
+		echo $objAPI->showMessage('TO DO: add_organization.');	
+		break;
 
-?>
+	case 'update_contact':
+		echo $objAPI->showMessage('TO DO: update_contact.');	
+		break;
+
+	case 'update_organization':
+		echo $objAPI->showMessage('TO DO: update_organization.');	
+		break;
+		
+	case 'delete_contact':
+		echo $objAPI->showMessage('TO DO: delete_contact.');	
+		break;
+		
+	case 'delete_organization':
+		echo $objAPI->showMessage('TO DO: delete_organization.');	
+		break;
+
+	default:
+		echo $objAPI->showMessage('Unsupported Action.',FALSE);
+}
