@@ -1,11 +1,11 @@
 <?php
 
-require_once('DB.class.php');
+require_once('DBComm.class.php');
 
 class Crm_Api {
 
-	function __construct($blnVerbose=FALSE) {
-		$this->db = new DB();
+	function __construct() {
+		$this->dbcomm = new DBComm();
 		return;
 	}
 	
@@ -14,11 +14,19 @@ class Crm_Api {
 	}
 	
 	function getOrganizations() {
-		return $this->jsonify('organizations', $this->getOrganizationsFromDB());
+	
+		return $this->jsonify(
+			'organizations', 
+			$this->dbcomm->getOrganizationsFromDB()
+		);
 	}
    
 	function getContacts() {
-		return $this->jsonify('contacts', $this->getContactsFromDB());
+	
+		return $this->jsonify(
+			'contacts', 
+			$this->dbcomm->getContactsFromDB()
+		);
 	}
 	
 	function addContact(
@@ -48,7 +56,7 @@ class Crm_Api {
 			return FALSE;
 		}		
 	
-		$iId = $this->addContactToDB(
+		$iId = $this->dbcomm->addContactToDB(
 			$strFirstname,
 			$strLastname,
 			$strEmail,
@@ -78,7 +86,7 @@ class Crm_Api {
 			return FALSE;
 		}		
 
-		$iId = $this->addOrganizationToDB(
+		$iId = $this->dbcomm->addOrganizationToDB(
 			$strOrgName,
 			$strWebsite
 		);
@@ -91,6 +99,7 @@ class Crm_Api {
 		return $iId;
 	}  	
 	
+/*	
 	function getOrganizationsFromDB() {
 	
 		$strSQL = 'SELECT * FROM organization';
@@ -139,7 +148,8 @@ class Crm_Api {
 		$iID = $this->db->update($strINSERT);
 
 		return $iID;
-	}   
+	}  
+*/	
 
 	function jsonify($strLabel, $arrResults) {
 
