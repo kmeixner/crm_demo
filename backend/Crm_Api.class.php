@@ -127,7 +127,49 @@ class Crm_Api {
 		}		
 	
 		return $this->dbcomm->deleteOrganizationFromDB($iId);	
-	}	
+	}
+	
+	function updateContact(
+		$iId,
+		$strFirstname,
+		$strLastname,
+		$strEmail,
+		$strPhone
+	) {
+	
+		if (empty($iId)) {
+			$this->error = 'Update Contact: Invalid parameters received.';	
+			return FALSE;
+		}
+
+		if (empty($strFirstname)) {
+			$this->error = 'Add Contact: Firstname is a required parameter';
+			return FALSE;
+		}
+		
+		if (empty($strLastname)) {
+			$this->error = 'Add Contact: Lastname is a required parameter';
+			return FALSE;
+		}
+
+		if (empty($strEmail)) {
+			$this->error = 'Add Contact: email is a required parameter';
+			return FALSE;
+		}
+
+		if (empty($strPhone)) {
+			$this->error = 'Add Contact: phone is a required parameter';
+			return FALSE;
+		}		
+	
+		return $this->dbcomm->updateContactInDB(
+			$iId,
+			$strFirstname,
+			$strLastname,
+			$strEmail,
+			$strPhone
+		);		
+	}
 
 	function jsonify($strLabel, $arrResults) {
 

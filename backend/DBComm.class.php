@@ -66,6 +66,24 @@ class DBComm {
 	function deleteOrganizationFromDB($iId) {
 		$sqlDELETE = "DELETE FROM organization WHERE id='".$iId."'";
 		return $this->db->update($sqlDELETE);	
-	}	
+	}
+
+	function updateContactInDB(
+		$iId,
+		$strFirstname,
+		$strLastname,
+		$strEmail,
+		$strPhone
+	) {
+	
+		$strUPDATE  = 'UPDATE contact SET ';
+		$strUPDATE .= "firstname='".$strFirstname."'";
+		$strUPDATE .= ",lastname='".$strLastname."'";
+		$strUPDATE .= ",email='".$strEmail."'";
+		$strUPDATE .= ",phone='".$strPhone."'";		
+		$strUPDATE .= " WHERE id='".$iId."'";
+
+		return $this->db->update($strUPDATE);
+	}
 	
 }	
