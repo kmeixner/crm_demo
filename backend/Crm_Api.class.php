@@ -155,11 +155,6 @@ class Crm_Api {
 			return FALSE;
 		}
 		
-		if (!is_int($iId)) {
-			$this->error = 'Delete Contact: Invalid parameters received.';			
-			return FALSE;		
-		}
-		
 		return $this->dbcomm->deleteContactFromDB($iId);
 	}
 	
@@ -169,11 +164,6 @@ class Crm_Api {
 			$this->error = 'Delete Organization: Invalid parameters received.';	
 			return FALSE;
 		}
-
-		if (!is_int($iId)) {
-			$this->error = 'Delete Organization: Invalid parameters received.';			
-			return FALSE;		
-		}		
 	
 		return $this->dbcomm->deleteOrganizationFromDB($iId);	
 	}
