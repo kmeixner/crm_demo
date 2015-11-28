@@ -97,59 +97,37 @@ class Crm_Api {
 		}
 
 		return $iId;
-	}  	
+	}
 	
-/*	
-	function getOrganizationsFromDB() {
+	function deleteContact($iId) {
 	
-		$strSQL = 'SELECT * FROM organization';
-		$results = $this->db->query($strSQL);	
+		if (empty($iId)) {
+			$this->error = 'Delete Contact: Invalid parameters received.';			
+			return FALSE;
+		}
 		
-		return $results;
+		if (!is_int($iId)) {
+			$this->error = 'Delete Contact: Invalid parameters received.';			
+			return FALSE;		
+		}
+		
+		return $this->dbcomm->deleteContactFromDB($iId);
 	}
 	
-	function getContactsFromDB() {
+	function deleteOrganization($iId) {
 	
-		$strSQL = 'SELECT * FROM contact';
-		$results = $this->db->query($strSQL);
+		if (empty($iId)) {
+			$this->error = 'Delete Organization: Invalid parameters received.';	
+			return FALSE;
+		}
+
+		if (!is_int($iId)) {
+			$this->error = 'Delete Organization: Invalid parameters received.';			
+			return FALSE;		
+		}		
 	
-		return $results;
-	}
-
-	function addContactToDB(
-		$strFirstname,
-		$strLastname,
-		$strEmail,
-		$strPhone
-	) {
-
-		$strINSERT  = 'INSERT INTO contact (firstname,lastname,email,phone) VALUES (';
-		$strINSERT .= "'".$strFirstname."'";
-		$strINSERT .= ",'".$strLastname."'";
-		$strINSERT .= ",'".$strEmail."'";
-		$strINSERT .= ",'".$strPhone."'";    
-		$strINSERT .= ')';
-
-		$iID = $this->db->update($strINSERT);
-
-		return $iID;
-	}
-   
-	function addOrganizationToDB(
-		$strOrgName,
-		$strWebsite
-	) {
-
-		$strINSERT  = 'INSERT INTO organization (org_name,website) VALUES (';
-		$strINSERT .= "'".$strOrgName."'";
-		$strINSERT .= ",'".$strWebsite."'";
-		$strINSERT .= ')';
-
-		$iID = $this->db->update($strINSERT);
-
-		return $iID;
-	}  
-*/	
+		return $this->dbcomm->deleteOrganizationFromDB($iId);	
+	}	
 
 	function jsonify($strLabel, $arrResults) {
 

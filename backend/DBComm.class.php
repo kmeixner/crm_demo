@@ -56,6 +56,16 @@ class DBComm {
 		$iID = $this->db->update($strINSERT);
 
 		return $iID;
-	} 	
+	}
+
+	function deleteContactFromDB($iId) {
+		$sqlDELETE = "DELETE FROM contact WHERE id='".$iId."'";
+		return $this->db->update($sqlDELETE);
+	}
+	
+	function deleteOrganizationFromDB($iId) {
+		$sqlDELETE = "DELETE FROM organization WHERE id='".$iId."'";
+		return $this->db->update($sqlDELETE);	
+	}	
 	
 }	
