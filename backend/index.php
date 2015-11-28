@@ -13,7 +13,7 @@ $objAPI = new Crm_Api();
 //$result = $objAPI->deleteOrganization(2);
 //echo var_export($result, TRUE);
 
-$result = $objAPI->updateContact(5,'Your','Mama','www.snice.com','1-800-777-7777');
+$result = $objAPI->updateOrganization(5,'Smurfyland','www.smurfy.com');
 
 echo var_export($result, TRUE)
 

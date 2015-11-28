@@ -86,4 +86,18 @@ class DBComm {
 		return $this->db->update($strUPDATE);
 	}
 	
+	function updateOrganizationInDB(
+		$iId,
+		$strOrgName,
+		$strWebsite
+	) {
+	
+		$strUPDATE  = 'UPDATE organization SET ';
+		$strUPDATE .= "org_name='".$strOrgName."'";
+		$strUPDATE .= ",website='".$strWebsite."'";
+		$strUPDATE .= " WHERE id='".$iId."'";
+
+		return $this->db->update($strUPDATE);
+	}	
+	
 }	

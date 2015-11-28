@@ -170,6 +170,34 @@ class Crm_Api {
 			$strPhone
 		);		
 	}
+	
+	function updateOrganization(
+		$iId,
+		$strOrgName,
+		$strWebsite
+	) {
+	
+		if (empty($iId)) {
+			$this->error = 'Update Organization: Invalid parameters received.';	
+			return FALSE;
+		}
+
+		if (empty($strOrgName)) {
+			$this->error = 'Update Organization: Organization is a required parameter';
+			return FALSE;
+		}
+
+		if (empty($strWebsite)) {
+			$this->error = 'Update Organization: Website is a required parameter';
+			return FALSE;
+		}
+
+		return $this->dbcomm->updateOrganizationInDB(
+			$iId,
+			$strOrgName,
+			$strWebsite
+		);		
+	}
 
 	function jsonify($strLabel, $arrResults) {
 
