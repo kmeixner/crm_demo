@@ -68,7 +68,22 @@ switch ($strAction) {
 		break;
 
 	case 'update_contact':
-		echo $objAPI->showMessage('TO DO: update_contact.');	
+
+		$successful = $objAPI->updateContact(
+			$_REQUEST['id'],
+			$_REQUEST['firstname'],
+			$_REQUEST['lastname'],
+			$_REQUEST['email'],
+			$_REQUEST['phone']
+		);
+		
+		if ($successful) {
+		  echo $objAPI->showMessage('Contact Updated: '.$_REQUEST['id']);
+		}
+		else {
+		  echo $objAPI->showError($objAPI->getError());		
+		}
+	
 		break;
 
 	case 'update_organization':
