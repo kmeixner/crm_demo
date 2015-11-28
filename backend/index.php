@@ -19,7 +19,7 @@ $objAPI = new Crm_Api();
 $strAction = $_REQUEST['action'];
 
 if (empty($strAction)) {
-	echo $objAPI->showMessage('Action is a required parameter',FALSE);
+	echo $objAPI->showError('Action is a required parameter');
 	die();
 }
 
@@ -34,11 +34,25 @@ switch ($strAction) {
 		break;
 		
 	case 'add_contact':
+	
+		
 		echo $objAPI->showMessage('TO DO: add_contact.');	
 		break;
 		
 	case 'add_organization':
-		echo $objAPI->showMessage('TO DO: add_organization.');	
+
+		$iId = $objAPI->addOrganization(
+			$_REQUEST['org_name'],
+			$_REQUEST['website']			
+		);
+		
+		if (!empty($iId)) {
+		  echo $objAPI->showMessage($iId);
+		}
+		else {
+		  echo $objAPI->showError($objAPI->getError());		
+		}
+		
 		break;
 
 	case 'update_contact':

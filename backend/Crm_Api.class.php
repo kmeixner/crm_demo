@@ -33,6 +33,17 @@ class Crm_Api {
 	}
 	
 	/**
+	 * Returns a JSON formaterror message.
+	 *
+	 * @param string $strMessage: the message (required)
+	 *
+	 * @returns JSON: the error message
+	 */	
+	function showError($strMessage) {
+		return $this->showMessage($strMessage,FALSE);
+	}	
+	
+	/**
 	 * Returns error message
 	 *
 	 * @returns string: the error message
