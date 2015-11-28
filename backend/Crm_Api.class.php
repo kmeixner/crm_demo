@@ -9,6 +9,37 @@ class Crm_Api {
 		return;
 	}
 	
+	function main() {
+	
+		$strAction = $_REQUEST['action'];
+		
+		if (empty($strAction)) {
+		}
+	}
+	
+	/**
+	 * Returns a JSON format success/error message.
+	 *
+	 * @param string $strMessage: the message (required)
+	 * @param boolean $blnSuccessful: FALSE for error, TRUE otherwise (Default: TRUE)
+	 *
+	 * @returns JSON: the message
+	 */
+	function showMessage($strMessage, $blnSuccessful=TRUE) {
+	
+		$arrJSON = array();
+		$arrJSON['message'] = $strMessage;
+		
+		if ($blnSuccessful) {
+			$arrJSON['successful'] = 'true';
+		}
+		else {
+			$arrJSON['successful'] = 'false';		
+		}
+		
+		return json_encode($arrJSON);
+	}
+	
 	/**
 	 * Returns error message
 	 *
