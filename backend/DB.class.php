@@ -3,9 +3,7 @@ require_once('settings.inc.php');
 
 
 /**
- * CLASS: DB
- *
- * DESCRIPTION:
+ * @class DB
  *
  * This is a utility class that encapsulates database access. It allows 
  * SQL select, insert and updates operations and stores the database error 
@@ -63,10 +61,10 @@ class DB {
 		$result = $this->conn->query($strSQL);
 
 		if (0 == $result->num_rows)
-		return array();
+			return array();
 
 		while($row = $result->fetch_assoc()) {
-		array_push($arrResults, $row);
+			array_push($arrResults, $row);
 		}
 
 		return $arrResults;
@@ -92,8 +90,8 @@ class DB {
 		  }
 
 		} else {
-		$this->error = $this->conn->error;
-		return FALSE;
+			$this->error = $this->conn->error;
+			return FALSE;
 		}   
 
 	}

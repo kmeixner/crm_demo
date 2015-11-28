@@ -9,10 +9,20 @@ class Crm_Api {
 		return;
 	}
 	
+	/**
+	 * Returns error message
+	 *
+	 * @returns string: the error message
+	 */
 	function getError() {
 		return $this->error;
 	}
 	
+	/**
+	 * Returns organization list.
+	 *
+	 * @returns JSON: organization list
+	 */
 	function getOrganizations() {
 	
 		return $this->jsonify(
@@ -21,6 +31,11 @@ class Crm_Api {
 		);
 	}
    
+	/**
+	 * Returns contact list.
+	 *
+	 * @returns JSON: contact list
+	 */   
 	function getContacts() {
 	
 		return $this->jsonify(
@@ -199,6 +214,14 @@ class Crm_Api {
 		);		
 	}
 
+	/**
+	 * Converts a list of results from the database into JSON.
+	 *
+	 * @param string $strLabel: name to tag the result list with
+	 * @param array $arrResults: array of results
+	 *
+	 * @returns JSON: the results
+	 */
 	function jsonify($strLabel, $arrResults) {
 
 		 $arrJSON = array();

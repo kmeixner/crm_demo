@@ -1,6 +1,11 @@
 <?php
 require_once('DB.class.php');
 
+/**
+ * @class DBComm
+ *
+ * This class performs the actual SQL queries to the database.
+ */
 class DBComm {
 
 	function __construct() {
@@ -8,6 +13,11 @@ class DBComm {
 		return;
 	}
 	
+	/**
+	 * Fetch organization list.
+	 *
+	 * @returns array: list of organizations
+	 */
 	function getOrganizationsFromDB() {
 	
 		$strSQL = 'SELECT * FROM organization';
@@ -16,6 +26,11 @@ class DBComm {
 		return $results;
 	}
 	
+	/**
+	 * Fetch contact list.
+	 *
+	 * @returns array: list of contacts
+	 */	
 	function getContactsFromDB() {
 	
 		$strSQL = 'SELECT * FROM contact';
@@ -24,6 +39,16 @@ class DBComm {
 		return $results;
 	}
 
+	/**
+	 * Create a new contact.
+	 *
+	 * @param string $strFirstname: the first name (required)
+	 * @param string $strLastname: the last name (required)
+	 * @param string $strEmail: the email (required)
+	 * @param string $strPhone: the phone number (required)
+	 *
+	 * @returns int: the id of the new contact (or FALSE upon error)
+	 */		
 	function addContactToDB(
 		$strFirstname,
 		$strLastname,
@@ -43,6 +68,14 @@ class DBComm {
 		return $iID;
 	}
    
+	/**
+	 * Create a new organization.
+	 *
+	 * @param string $strOrgName: the organization name (required)
+	 * @param string $strWebsite: the website (required)
+	 *
+	 * @returns int: the id of the new organization (or FALSE upon error)
+	 */	   
 	function addOrganizationToDB(
 		$strOrgName,
 		$strWebsite
@@ -58,16 +91,41 @@ class DBComm {
 		return $iID;
 	}
 
+	/**
+	 * Deletes a contact.
+	 *
+	 * @param int $iId: the contact id (required)
+	 *
+	 * @returns boolean: TRUE if successful, FALSE otherwise
+	 */		
 	function deleteContactFromDB($iId) {
 		$sqlDELETE = "DELETE FROM contact WHERE id='".$iId."'";
 		return $this->db->update($sqlDELETE);
 	}
 	
+	/**
+	 * Deletes an organization.
+	 *
+	 * @param int $iId: the organization id (required)
+	 *
+	 * @returns boolean: TRUE if successful, FALSE otherwise
+	 */			
 	function deleteOrganizationFromDB($iId) {
 		$sqlDELETE = "DELETE FROM organization WHERE id='".$iId."'";
 		return $this->db->update($sqlDELETE);	
 	}
 
+	/**
+	 * Updates a contact.
+	 *
+	 * @param int $iId: the contact id (required)	 
+	 * @param string $strFirstname: the first name (required)
+	 * @param string $strLastname: the last name (required)
+	 * @param string $strEmail: the email (required)
+	 * @param string $strPhone: the phone number (required)
+	 *
+	 * @returns boolean: TRUE if successful, FALSE otherwise
+	 */		
 	function updateContactInDB(
 		$iId,
 		$strFirstname,
@@ -86,6 +144,15 @@ class DBComm {
 		return $this->db->update($strUPDATE);
 	}
 	
+	/**
+	 * Updates an organization.
+	 *
+	 * @param int $iId: the contact id (required)	 
+	 * @param string $strOrgName: the first name (required)
+	 * @param string $strWebsite: the last name (required)
+	 *
+	 * @returns boolean: TRUE if successful, FALSE otherwise
+	 */		
 	function updateOrganizationInDB(
 		$iId,
 		$strOrgName,
