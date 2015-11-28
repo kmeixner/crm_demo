@@ -1,0 +1,26 @@
+CREATE TABLE crm_organization (
+	id int NOT NULL AUTO_INCREMENT,
+	org_name varchar(255),
+	website varchar(255),
+        PRIMARY KEY (id)
+);
+
+ALTER TABLE organization ADD UNIQUE (
+	org_name,
+	website
+);
+
+ALTER TABLE organization ADD INDEX (org_name);
+
+CREATE TABLE crm_contact (
+	id int NOT NULL AUTO_INCREMENT,
+	firstname varchar(255),
+	lastname varchar(255),
+	email varchar(254),
+	phone varchar(24),
+        PRIMARY KEY (id)
+);
+
+ALTER TABLE contact ADD UNIQUE (
+	email
+);
