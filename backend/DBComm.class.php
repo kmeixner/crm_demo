@@ -165,6 +165,33 @@ class DBComm {
 		$strUPDATE .= " WHERE id='".$iId."'";
 
 		return $this->db->update($strUPDATE);
-	}	
+	}
+	
+	/**
+	 * This returns whether or not a contact already exists that has the
+	 * given email.
+	 *
+	 * @param string $strEmail: the email
+	 * @param int $iOmitId: (optional) if included don't check the record 
+	 *   with this id
+	 *
+	 * @returns TRUE if email found, FALSE otherwise
+	 */
+	function emailExistInContactsInDB($strEmail, $iOmitId=NULL) {
+		
+		$strSQL = "SELECT id FROM contact WHERE email='".$strEmail."'";
+		
+		if (!empty($iOmitId))
+			$strSQL .= " WHERE id != ".$iOmitId;
+		
+		$result = $this->db->query($strSQL);
+		
+		if (empty($result)) {
+			return FALSE;
+		}
+		else {
+			return TRUE;
+		}
+	}
 	
 }	

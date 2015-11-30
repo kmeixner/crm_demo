@@ -103,6 +103,11 @@ class Crm_Api {
 		if (empty($strPhone)) {
 			$this->error = 'Add Contact: phone is a required parameter';
 			return FALSE;
+		}	
+
+		if ($this->dbcomm->emailExistInContactsInDB($strEmail)) {
+			$this->error = 'Add Contact: that email is already in use by another contact.';
+			return FALSE;		
 		}		
 	
 		$iId = $this->dbcomm->addContactToDB(
@@ -199,8 +204,13 @@ class Crm_Api {
 		if (empty($strPhone)) {
 			$this->error = 'Add Contact: phone is a required parameter';
 			return FALSE;
-		}		
-	
+		}
+		
+		if ($this->dbcomm->emailExistInContactsInDB($strEmail, $iId)) {
+			$this->error = 'Add Contact: that email is already in use by another contact.';
+			return FALSE;		
+		}			
+
 		return $this->dbcomm->updateContactInDB(
 			$iId,
 			$strFirstname,
