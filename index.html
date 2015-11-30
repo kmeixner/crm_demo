@@ -33,25 +33,51 @@ body {
 </style>
 
 <script>
+var g = null;
+
 $(document).ready(function(){
 
    
 
 });
 
+function showError(strError) {
+	alert(strError);
+	return;
+}
+
 function refreshContacts() {
 
 	$.ajax({
-		url: "api/index.php?fetch_contacts", 
+		url: "api/index.php?action=fetch_contacts", 
 		success: function(result){
 			refreshContacts_callback(result);
 		}
 	});
 
+	return;
 }
 
 function refreshContacts_callback(data) {
-	alert(data);
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		displayContacts(objResponse['contacts']);	
+	}
+	
+	return;
+}
+
+function displayContacts(arrContacts) {
+	
+	for (var x in arrContacts) {
+		alert(arrContacts[x]['firstname'])
+	}
+
 }
 
 function refreshOrganizations() {
