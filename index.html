@@ -73,7 +73,14 @@ function refreshContacts_callback(data) {
 
 function displayContacts(arrContacts) {
 
-	var strHTML = '';
+	var strHTML = '<form> \
+					<input name="firstname" type="text" placeholder="First Name" required="required" /> \
+					<input name="lastname" type="text" placeholder="Last Name" required="required" /> \
+					<input name="email" type="email" placeholder="Email" required="required" /> \
+					<input name="phone" type="tel" placeholder="Phone Number" required="required" /> \
+					<button>Add</button> \
+					</form> \
+				  ';
 	
 	for (var x in arrContacts) {
 
@@ -84,7 +91,7 @@ function displayContacts(arrContacts) {
 		var strPhone = arrContacts[x]['phone'];
 
 		strHTML += '<form> \
-					<span>'+iID+'</span> \
+					<span class="id">'+iID+'</span> \
 					<input name="firstname" type="text" value="'+strFirstname+'" required="required" /> \
 					<input name="lastname" type="text" value="'+strLastname+'" required="required" /> \
 					<input name="email" type="email" value="'+strEmail+'" required="required" /> \
@@ -127,7 +134,12 @@ function refreshOrganizations_callback(data) {
 
 function displayOrganizations(arrContacts) {
 
-	var strHTML = '';
+	var strHTML = '<form> \
+					<input name="org_name" type="text" placeholder="Name" required="required" /> \
+					<input name="website" type="text" placeholder="Website" required="required" /> \
+					<button>Add</button> \
+					</form> \
+				  ';
 	
 	for (var x in arrContacts) {
 
@@ -136,7 +148,7 @@ function displayOrganizations(arrContacts) {
 		var strWebsite = arrContacts[x]['website'];
 
 		strHTML += '<form> \
-					<span>'+iID+'</span> \
+					<span class="id">'+iID+'</span> \
 					<input name="org_name" type="text" value="'+strOrgName+'" required="required" /> \
 					<input name="website" type="text" value="'+strWebsite+'" required="required" /> \
 					<button>Edit</button> \
