@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="windows-1252">  
+  <title>CRM Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  
+<style>
+body {
+	margin:0;
+	padding:0
+}
+
+#header, #footer {
+	width: 100%;
+	text-align: center;
+	color: #efefef;
+	background-color: #111111;
+}
+
+#header {
+	position: absolute;
+	top: 0;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+}
+
+#contactArea, #organizationArea {
+	display:block; 
+	position:relative; 
+	width:200px; 
+	height:auto; 
+	margin:0px auto 0px;
+}
+
+</style>
+  
+  
+</head>
+<body>
+
+<div id="header">
+CRM Demo
+</div>
+
+<div id="content">
+
+
+<div id="contactArea">
+
+<h4>Add Contact</h4>
+
+<form name="addContact">
+	<label>First Name:</label><input name="firstname" type="text" required="required" /><br />
+	<label>Last Name:</label><input name="lastname" type="text" required="required" /><br />
+	<label>Email:</label><input name="email" type="email" required="required" /><br />
+	<label>Phone:</label><input name="firstname" type="tel" required="required" /><br />	
+</form>
+
+</div>
+
+<div id="organizationArea">
+
+<h4>Add Organization</h4>
+
+<form name="addOrganization">
+	<label>Name:</label><input name="org_name" type="text" required="required" /><br />
+	<label>Website:</label><input name="website" type="text" required="required" /><br />
+</form>
+
+</div>
+
+
+<div id="footer">
+&copy; 2015-Present by Kevin Meixner
+</div>
+
+
+</body>
+</html>
