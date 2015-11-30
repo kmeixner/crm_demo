@@ -21,12 +21,12 @@ body {
 }
 
 #header {
-	position: absolute;
+	position: fixed;
 	top: 0;
 }
 
 #footer {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 }
 
@@ -36,9 +36,8 @@ body {
 var g = null;
 
 $(document).ready(function(){
-
-   
-
+	refreshContacts();
+	refreshOrganizations();	
 });
 
 function showError(strError) {
@@ -104,7 +103,53 @@ function displayContacts(arrContacts) {
 }
 
 function refreshOrganizations() {
-	alert('refreshContacts');
+	$.ajax({
+		url: "api/index.php?action=fetch_organizations", 
+		success: function(result){
+			refreshOrganizations_callback(result);
+		}
+	});
+}
+
+function refreshOrganizations_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		displayOrganizations(objResponse['organizations']);	
+	}
+	
+	return;
+}
+
+function displayOrganizations(arrContacts) {
+
+	var strHTML = '';
+	
+	for (var x in arrContacts) {
+
+		var iID = arrContacts[x]['id'];	
+		var strOrgName = arrContacts[x]['org_name'];
+		var strWebsite = arrContacts[x]['website'];
+
+		strHTML += '<form> \
+					<span>'+iID+'</span> \
+					<input name="org_name" type="text" value="'+strOrgName+'" required="required" /> \
+					<input name="website" type="text" value="'+strWebsite+'" required="required" /> \
+					<button>Edit</button> \
+					<button>Del</button> \
+					</form> \
+					';
+					
+	}
+	
+	var objOrgDiv = document.getElementById('organizationArea');
+	objOrgDiv.innerHTML = strHTML;
+	
+	return;
 }
 
 </script>
@@ -123,24 +168,11 @@ CRM Demo
 
 <h2>Contacts</h2>
 
-<div id="contactArea" />
-<!--span class="contact_id">id</span>
-<input name="firstname" type="text" required="required" />
-<input name="lastname" type="text" required="required" />
-<input name="email" type="email" required="required" />
-<input name="firstname" type="tel" required="required" />
-<button>Edit</button>
-<button>Del</button-->
+<div id="contactArea"></div>
 
 <h2>Organizations</h2>
 
-<!--span class="org_id">id</span>
-<input name="org_name" type="text" required="required" />
-<input name="website" type="text" required="required" />
-<button>Edit</button>
-<button>Del</button-->
-
-<div id="divOrgs" />
+<div id="organizationArea"></div>
 
 
 </div>
