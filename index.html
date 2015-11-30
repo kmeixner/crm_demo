@@ -30,14 +30,6 @@ body {
 	bottom: 0;
 }
 
-#contactArea, #organizationArea {
-	display:block; 
-	position:relative; 
-	width:200px; 
-	height:auto; 
-	margin:0px auto 0px;
-}
-
 </style>
   
   
@@ -53,25 +45,25 @@ CRM Demo
 
 <div id="contactArea">
 
-<h4>Add Contact</h4>
+<br /><br />
 
-<form name="addContact">
-	<label>First Name:</label><input name="firstname" type="text" required="required" /><br />
-	<label>Last Name:</label><input name="lastname" type="text" required="required" /><br />
-	<label>Email:</label><input name="email" type="email" required="required" /><br />
-	<label>Phone:</label><input name="firstname" type="tel" required="required" /><br />	
-</form>
+<h2>Contacts</h2>
 
-</div>
+<span class="contact_id">id</span>
+<input name="firstname" type="text" required="required" />
+<input name="lastname" type="text" required="required" />
+<input name="email" type="email" required="required" />
+<input name="firstname" type="tel" required="required" />
+<button>Edit</button>
+<button>Del</button>
 
-<div id="organizationArea">
+<h2>Organizations</h2>
 
-<h4>Add Organization</h4>
-
-<form name="addOrganization">
-	<label>Name:</label><input name="org_name" type="text" required="required" /><br />
-	<label>Website:</label><input name="website" type="text" required="required" /><br />
-</form>
+<span class="org_id">id</span>
+<input name="org_name" type="text" required="required" />
+<input name="website" type="text" required="required" />
+<button>Edit</button>
+<button>Del</button>
 
 </div>
 
