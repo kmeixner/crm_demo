@@ -1,4 +1,4 @@
-CREATE TABLE crm_organization (
+CREATE TABLE organization (
 	id int NOT NULL AUTO_INCREMENT,
 	org_name varchar(255),
 	website varchar(255),
@@ -12,7 +12,7 @@ ALTER TABLE organization ADD UNIQUE (
 
 ALTER TABLE organization ADD INDEX (org_name);
 
-CREATE TABLE crm_contact (
+CREATE TABLE contact (
 	id int NOT NULL AUTO_INCREMENT,
 	firstname varchar(255),
 	lastname varchar(255),
@@ -23,4 +23,18 @@ CREATE TABLE crm_contact (
 
 ALTER TABLE contact ADD UNIQUE (
 	email
+);
+
+CREATE TABLE org_contact (
+	id int NOT NULL AUTO_INCREMENT,
+	org_id int NOT NULL,
+	contact_id int NOT NULL,
+        PRIMARY KEY (id),
+	FOREIGN KEY (org_id) REFERENCES organization(id),
+	FOREIGN KEY (contact_id) REFERENCES contact(id)
+);
+
+ALTER TABLE org_contact ADD UNIQUE (
+	org_id,
+	contact_id
 );
