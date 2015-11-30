@@ -73,11 +73,34 @@ function refreshContacts_callback(data) {
 }
 
 function displayContacts(arrContacts) {
+
+	var strHTML = '';
 	
 	for (var x in arrContacts) {
-		alert(arrContacts[x]['firstname'])
-	}
 
+		var iID = arrContacts[x]['id'];	
+		var strFirstname = arrContacts[x]['firstname'];
+		var strLastname = arrContacts[x]['lastname'];
+		var strEmail = arrContacts[x]['email'];
+		var strPhone = arrContacts[x]['phone'];
+
+		strHTML += '<form> \
+					<span>'+iID+'</span> \
+					<input name="firstname" type="text" value="'+strFirstname+'" required="required" /> \
+					<input name="lastname" type="text" value="'+strLastname+'" required="required" /> \
+					<input name="email" type="email" value="'+strEmail+'" required="required" /> \
+					<input name="phone" type="tel" value="'+strPhone+'" required="required" /> \
+					<button>Edit</button> \
+					<button>Del</button> \
+					</form> \
+					';
+					
+	}
+	
+	var objContactDiv = document.getElementById('contactArea');
+	objContactDiv.innerHTML = strHTML;
+	
+	return;
 }
 
 function refreshOrganizations() {
@@ -96,13 +119,11 @@ CRM Demo
 
 <div id="content">
 
-
-<div id="contactArea">
-
 <br /><br />
 
 <h2>Contacts</h2>
 
+<div id="contactArea" />
 <!--span class="contact_id">id</span>
 <input name="firstname" type="text" required="required" />
 <input name="lastname" type="text" required="required" />
@@ -110,8 +131,6 @@ CRM Demo
 <input name="firstname" type="tel" required="required" />
 <button>Edit</button>
 <button>Del</button-->
-
-<div id="divContacts" />
 
 <h2>Organizations</h2>
 
