@@ -90,14 +90,14 @@ function displayContacts(arrContacts) {
 		var strEmail = arrContacts[x]['email'];
 		var strPhone = arrContacts[x]['phone'];
 
-		strHTML += '<form> \
+		strHTML += '<form data-id='+iID+'> \
 					<span class="id">'+iID+'</span> \
 					<input name="firstname" type="text" value="'+strFirstname+'" required="required" /> \
 					<input name="lastname" type="text" value="'+strLastname+'" required="required" /> \
 					<input name="email" type="email" value="'+strEmail+'" required="required" /> \
 					<input name="phone" type="tel" value="'+strPhone+'" required="required" /> \
-					<button>Edit</button> \
-					<button>Del</button> \
+					<input type="button" value="Edit" onclick="updateContact($(this).parent());" /> \
+					<input type="button" value="Del" onclick="deleteContact($(this).parent());" /> \
 					</form> \
 					';
 					
@@ -110,12 +110,15 @@ function displayContacts(arrContacts) {
 }
 
 function refreshOrganizations() {
+
 	$.ajax({
 		url: "api/index.php?action=fetch_organizations", 
 		success: function(result){
 			refreshOrganizations_callback(result);
 		}
 	});
+	
+	return;
 }
 
 function refreshOrganizations_callback(data) {
@@ -147,12 +150,12 @@ function displayOrganizations(arrContacts) {
 		var strOrgName = arrContacts[x]['org_name'];
 		var strWebsite = arrContacts[x]['website'];
 
-		strHTML += '<form> \
+		strHTML += '<form data-id='+iID+'> \
 					<span class="id">'+iID+'</span> \
 					<input name="org_name" type="text" value="'+strOrgName+'" required="required" /> \
 					<input name="website" type="text" value="'+strWebsite+'" required="required" /> \
-					<button>Edit</button> \
-					<button>Del</button> \
+					<input type="button" value="Edit" onclick="updateOrganization($(this).parent());" /> \
+					<input type="button" value="Del" onclick="deleteOrganization($(this).parent());" /> \
 					</form> \
 					';
 					
@@ -161,6 +164,52 @@ function displayOrganizations(arrContacts) {
 	var objOrgDiv = document.getElementById('organizationArea');
 	objOrgDiv.innerHTML = strHTML;
 	
+	return;
+}
+
+function updateContact(objForm) {
+
+	var iId = $(objForm).data('id');
+	var arrElements = $(objForm).children();
+	
+	g = arrElements;
+	
+	var strFirstName = $(arrElements[1]).val();
+	var strLastName = $(arrElements[2]).val();	
+	var strEmail = $(arrElements[3]).val();	
+	var strPhone = $(arrElements[4]).val();
+	
+	var strURL  = 'api/index.php?action=update_contact';
+		strURL += '&firstname='+strFirstName;
+		strURL += '&lastname='+strLastName;
+		strURL += '&email='+strEmail;
+		strURL += '&phone='+strPhone;
+		
+	console.info('CALL: '+strURL);
+	return;
+	
+	$.ajax({
+		url: strURL, 
+		success: function(result){
+			refreshContacts_callback(result);
+		}
+	});	
+	
+	return;
+}
+
+function updateOrganization(objForm) {
+	alert('TO DO: updateOrganization: '+objForm);
+	return;
+}
+
+function deleteContact(objForm) {
+	alert('TO DO: deleteContact: '+objForm);
+	return;
+}
+
+function deleteOrganization(objForm) {
+	alert('TO DO: deleteOrganization: '+objForm);
 	return;
 }
 
