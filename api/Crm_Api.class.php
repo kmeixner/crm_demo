@@ -247,6 +247,31 @@ class Crm_Api {
 			$strWebsite
 		);		
 	}
+	
+	function linkContactToOrg($iContactId, $iOrg) {
+	
+		if (empty($iContactId)) {
+			$this->error = 'Link Contact To Organization: contact id is required..';	
+			return FALSE;
+		}
+
+		if (empty($iOrg)) {
+			$this->error = 'Link Contact To Organization: organization id is required..';	
+			return FALSE;
+		}			
+	
+		return linkContactToOrgInDB($iContactId, $iOrgId);
+	}
+	
+	function unlinkContactFromOrg($iLinkId) {
+	
+		if (empty($iOrg)) {
+			$this->error = 'Unlink Contact From Organization: link id is required..';	
+			return FALSE;
+		}	
+	
+		return unlinkContactFromOrgInDB($iLinkId);
+	}
 
 	/**
 	 * Converts a list of results from the database into JSON.
