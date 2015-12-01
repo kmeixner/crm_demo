@@ -57,10 +57,10 @@ class DBComm {
 	) {
 
 		$strINSERT  = 'INSERT INTO contact (firstname,lastname,email,phone) VALUES (';
-		$strINSERT .= "'".$strFirstname."'";
-		$strINSERT .= ",'".$strLastname."'";
-		$strINSERT .= ",'".$strEmail."'";
-		$strINSERT .= ",'".$strPhone."'";    
+		$strINSERT .= "'".$this->db->sanitize($strFirstname)."'";
+		$strINSERT .= ",'".$this->db->sanitize($strLastname)."'";
+		$strINSERT .= ",'".$this->db->sanitize($strEmail)."'";
+		$strINSERT .= ",'".$this->db->sanitize($strPhone)."'";    
 		$strINSERT .= ')';
 
 		$iID = $this->db->update($strINSERT);
@@ -82,8 +82,8 @@ class DBComm {
 	) {
 
 		$strINSERT  = 'INSERT INTO organization (org_name,website) VALUES (';
-		$strINSERT .= "'".$strOrgName."'";
-		$strINSERT .= ",'".$strWebsite."'";
+		$strINSERT .= "'".$this->db->sanitize($strOrgName)."'";
+		$strINSERT .= ",'".$this->db->sanitize($strWebsite)."'";
 		$strINSERT .= ')';
 
 		$iID = $this->db->update($strINSERT);
@@ -99,7 +99,7 @@ class DBComm {
 	 * @returns boolean: TRUE if successful, FALSE otherwise
 	 */		
 	function deleteContactFromDB($iId) {
-		$sqlDELETE = "DELETE FROM contact WHERE id='".$iId."'";
+		$sqlDELETE = "DELETE FROM contact WHERE id='".$this->db->sanitize($iId)."'";
 		return $this->db->update($sqlDELETE);
 	}
 	
@@ -111,7 +111,7 @@ class DBComm {
 	 * @returns boolean: TRUE if successful, FALSE otherwise
 	 */			
 	function deleteOrganizationFromDB($iId) {
-		$sqlDELETE = "DELETE FROM organization WHERE id='".$iId."'";
+		$sqlDELETE = "DELETE FROM organization WHERE id='".$this->db->sanitize($iId)."'";
 		return $this->db->update($sqlDELETE);	
 	}
 
@@ -135,11 +135,11 @@ class DBComm {
 	) {
 	
 		$strUPDATE  = 'UPDATE contact SET ';
-		$strUPDATE .= "firstname='".$strFirstname."'";
-		$strUPDATE .= ",lastname='".$strLastname."'";
-		$strUPDATE .= ",email='".$strEmail."'";
-		$strUPDATE .= ",phone='".$strPhone."'";		
-		$strUPDATE .= " WHERE id='".$iId."'";
+		$strUPDATE .= "firstname='".$this->db->sanitize($strFirstname)."'";
+		$strUPDATE .= ",lastname='".$this->db->sanitize($strLastname)."'";
+		$strUPDATE .= ",email='".$this->db->sanitize($strEmail)."'";
+		$strUPDATE .= ",phone='".$this->db->sanitize($strPhone)."'";		
+		$strUPDATE .= " WHERE id='".$this->db->sanitize($iId)."'";
 
 		return $this->db->update($strUPDATE);
 	}
@@ -160,9 +160,9 @@ class DBComm {
 	) {
 	
 		$strUPDATE  = 'UPDATE organization SET ';
-		$strUPDATE .= "org_name='".$strOrgName."'";
-		$strUPDATE .= ",website='".$strWebsite."'";
-		$strUPDATE .= " WHERE id='".$iId."'";
+		$strUPDATE .= "org_name='".$this->db->sanitize($strOrgName)."'";
+		$strUPDATE .= ",website='".$this->db->sanitize($strWebsite)."'";
+		$strUPDATE .= " WHERE id='".$this->db->sanitize($iId)."'";
 
 		return $this->db->update($strUPDATE);
 	}
@@ -179,10 +179,10 @@ class DBComm {
 	 */
 	function emailExistInContactsInDB($strEmail, $iOmitId=NULL) {
 		
-		$strSQL = "SELECT id FROM contact WHERE email='".$strEmail."'";
+		$strSQL = "SELECT id FROM contact WHERE email='".$this->db->sanitize($strEmail)."'";
 		
 		if (!empty($iOmitId))
-			$strSQL .= " WHERE id != ".$iOmitId;
+			$strSQL .= " WHERE id != ".$this->db->sanitize($iOmitId);
 		
 		$result = $this->db->query($strSQL);
 		
@@ -205,8 +205,8 @@ class DBComm {
 	function linkContactToOrgInDB($iContactId, $iOrgId) {
 	
 		$strINSERT  = 'INSERT INTO org_contact (org_id, contact_id) VALUES ( ';
-		$strINSERT .= "'".$iContactId."'";
-		$strINSERT .= ",'".$iOrgId."'";
+		$strINSERT .= "'".$this->db->sanitize($iContactId)."'";
+		$strINSERT .= ",'".$this->db->sanitize($iOrgId)."'";
 		$strINSERT .= ')';
 
 		return $this->db->update($strINSERT);	
@@ -220,7 +220,7 @@ class DBComm {
 	 * @returns boolean: TRUE if successful, FALSE otherwise
 	 */		
 	function unlinkContactFromOrgInDB($iLinkId) {
-		$sqlDELETE = "DELETE FROM org_contact WHERE id='".$iLinkId."'";
+		$sqlDELETE = "DELETE FROM org_contact WHERE id='".$this->db->sanitize($iLinkId)."'";
 		return $this->db->update($sqlDELETE);	
 	}
 	
