@@ -20,6 +20,11 @@ body {
 	bottom: 0;
 }
 
+.addform {
+	position: relative;
+	left: 38px;
+}
+
 .idfield {
 	width: 30px;
 }

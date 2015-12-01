@@ -47,7 +47,7 @@ function refreshContacts_callback(data) {
 
 function displayContacts(arrContacts) {
 
-	var strHTML = '<form> \
+	var strHTML = '<form class="addform"> \
 					<input class="field" name="firstname" type="text" placeholder="First Name" required="required" /> \
 					<input class="field" name="lastname" type="text" placeholder="Last Name" required="required" /> \
 					<input class="field" name="email" type="email" placeholder="Email" required="required" /> \
@@ -111,7 +111,7 @@ function refreshOrganizations_callback(data) {
 
 function displayOrganizations(arrContacts) {
 
-	var strHTML = '<form> \
+	var strHTML = '<form class="addform"> \
 					<input class="field" name="org_name" type="text" placeholder="Name" required="required" /> \
 					<input class="field" name="website" type="text" placeholder="Website" required="required" /> \
 					<input type="button" value="Add" onclick="addOrganization($(this).parent());" /> \
