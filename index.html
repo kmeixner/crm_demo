@@ -161,13 +161,13 @@ function addContact(objForm) {
 	$.ajax({
 		url: strURL, 
 		success: function(result){
-			addContacts_callback(result);
+			addContact_callback(result);
 		}
 	});	
   
 }
 
-function addContacts_callback(data) {
+function addContact_callback(data) {
 
 	var objResponse = JSON.parse(data);
 	
@@ -203,14 +203,14 @@ function updateContact(objForm) {
 	$.ajax({
 		url: strURL, 
 		success: function(result){
-			updateContacts_callback(result);
+			updateContact_callback(result);
 		}
 	});	
 	
 	return;
 }
 
-function updateContacts_callback(data) {
+function updateContact_callback(data) {
 
 	var objResponse = JSON.parse(data);
 	
@@ -219,6 +219,42 @@ function updateContacts_callback(data) {
 	}
 	else {
 		refreshContacts(objResponse['contacts']);	
+	}
+
+	return;
+}
+
+function addOrganization(objForm) {
+
+	var arrElements = $(objForm).children();
+	
+	var strOrgName= $(arrElements[0]).val();
+	var strWebsite = $(arrElements[1]).val();	
+	
+	var strURL  = 'api/index.php?action=add_organization';
+		strURL += '&org_name='+strOrgName;
+		strURL += '&website='+strWebsite;
+		
+	console.info('CALL: '+strURL);
+	
+	$.ajax({
+		url: strURL, 
+		success: function(result){
+			addOrganization_callback(result);
+		}
+	});	
+  
+}
+
+function addOrganization_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshOrganizations(objResponse['contacts']);	
 	}
 
 	return;
@@ -353,6 +389,7 @@ CRM Demo
 
 <div id="organizationArea"></div>
 
+<br /><br />
 
 </div>
 
