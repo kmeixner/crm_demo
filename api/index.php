@@ -121,6 +121,37 @@ switch ($strAction) {
 		}		
 	
 		break;
+		
+	case 'link_contact':
+	
+		$iId = $objAPI->linkContactToOrg(
+			$_REQUEST['contact_id'],
+			$_REQUEST['org_id']			
+		);
+
+		if (!empty($iId)) {
+		  echo $objAPI->showMessage($iId);
+		}
+		else {
+		  echo $objAPI->showError($objAPI->getError());		
+		}		
+
+		break;
+		
+	case 'unlink_contact':
+	
+		$successful = $objAPI->unlinkContactFromOrg(
+			$_REQUEST['link_id']
+		);
+		
+		if ($successful) {
+		  echo $objAPI->showMessage('Contact Unlinked: '.$_REQUEST['link_id']);
+		}
+		else {
+		  echo $objAPI->showError($objAPI->getError());		
+		}	
+	
+		break;		
 
 	default:
 		echo $objAPI->showMessage('Unsupported Action.',FALSE);
