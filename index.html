@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/crm_demo/css/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+  
 <script>
 
 $(document).ready(function(){
@@ -48,10 +48,10 @@ function refreshContacts_callback(data) {
 function displayContacts(arrContacts) {
 
 	var strHTML = '<form> \
-					<input name="firstname" type="text" placeholder="First Name" required="required" /> \
-					<input name="lastname" type="text" placeholder="Last Name" required="required" /> \
-					<input name="email" type="email" placeholder="Email" required="required" /> \
-					<input name="phone" type="tel" placeholder="Phone Number" required="required" /> \
+					<input class="field" name="firstname" type="text" placeholder="First Name" required="required" /> \
+					<input class="field" name="lastname" type="text" placeholder="Last Name" required="required" /> \
+					<input class="field" name="email" type="email" placeholder="Email" required="required" /> \
+					<input class="field" name="phone" type="tel" placeholder="Phone Number" required="required" /> \
 					<input type="button" value="Add" onclick="addContact($(this).parent());" /> \
 					</form> \
 				  ';
@@ -65,11 +65,11 @@ function displayContacts(arrContacts) {
 		var strPhone = arrContacts[x]['phone'];
 
 		strHTML += '<form data-id='+iID+'> \
-					<span class="id">'+iID+'</span> \
-					<input name="firstname" type="text" value="'+strFirstname+'" required="required" /> \
-					<input name="lastname" type="text" value="'+strLastname+'" required="required" /> \
-					<input name="email" type="email" value="'+strEmail+'" required="required" /> \
-					<input name="phone" type="tel" value="'+strPhone+'" required="required" /> \
+					<input class="idfield" type="text" value="'+iID+'" disabled="disabled" /> \
+					<input class="field" name="firstname" type="text" value="'+strFirstname+'" required="required" /> \
+					<input class="field" name="lastname" type="text" value="'+strLastname+'" required="required" /> \
+					<input class="field" name="email" type="email" value="'+strEmail+'" required="required" /> \
+					<input class="field" name="phone" type="tel" value="'+strPhone+'" required="required" /> \
 					<input type="button" value="Edit" onclick="updateContact($(this).parent());" /> \
 					<input type="button" value="Del" onclick="deleteContact($(this).parent());" /> \
 					</form> \
@@ -112,8 +112,8 @@ function refreshOrganizations_callback(data) {
 function displayOrganizations(arrContacts) {
 
 	var strHTML = '<form> \
-					<input name="org_name" type="text" placeholder="Name" required="required" /> \
-					<input name="website" type="text" placeholder="Website" required="required" /> \
+					<input class="field" name="org_name" type="text" placeholder="Name" required="required" /> \
+					<input class="field" name="website" type="text" placeholder="Website" required="required" /> \
 					<input type="button" value="Add" onclick="addOrganization($(this).parent());" /> \
 					</form> \
 				  ';
@@ -125,9 +125,9 @@ function displayOrganizations(arrContacts) {
 		var strWebsite = arrContacts[x]['website'];
 
 		strHTML += '<form data-id='+iID+'> \
-					<span class="id">'+iID+'</span> \
-					<input name="org_name" type="text" value="'+strOrgName+'" required="required" /> \
-					<input name="website" type="text" value="'+strWebsite+'" required="required" /> \
+					<input class="idfield" type="text" value="'+iID+'" disabled="disabled" /> \
+					<input class="field" style="left: 50px;" name="org_name" type="text" value="'+strOrgName+'" required="required" /> \
+					<input class="field" name="website" type="text" value="'+strWebsite+'" required="required" /> \
 					<input type="button" value="Edit" onclick="updateOrganization($(this).parent());" /> \
 					<input type="button" value="Del" onclick="deleteOrganization($(this).parent());" /> \
 					</form> \

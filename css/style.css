@@ -19,3 +19,11 @@ body {
 	position: fixed;
 	bottom: 0;
 }
+
+.idfield {
+	width: 30px;
+}
+
+.field {
+	width: 180px;
+}
