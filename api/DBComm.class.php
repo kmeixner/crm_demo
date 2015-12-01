@@ -194,4 +194,34 @@ class DBComm {
 		}
 	}
 	
+	/**
+	 * Assigns a contact to an organization.
+	 *
+	 * @param int $iContactId: the contact id
+	 * @param int $iOrgId: the organization id	 
+	 *
+	 * @returns int: the id of the org_contact record created or FALSE upon failure
+	 */
+	function linkContactToOrgInDB($iContactId, $iOrgId) {
+	
+		$strINSERT  = 'INSERT INTO org_contact (org_id, contact_id) VALUES ( ';
+		$strINSERT .= "'".$iContactId."'";
+		$strINSERT .= ",'".$iOrgId."'";
+		$strINSERT .= ')';
+
+		return $this->db->update($strINSERT);	
+	}
+	
+	/**
+	 * Deletes an organization.
+	 *
+	 * @param int $iId: the organization id (required)
+	 *
+	 * @returns boolean: TRUE if successful, FALSE otherwise
+	 */		
+	function unlinkContactFromOrgInDB($iLinkId) {
+		$sqlDELETE = "DELETE FROM org_contact WHERE id='".$iLinkId."'";
+		return $this->db->update($sqlDELETE);	
+	}
+	
 }	
