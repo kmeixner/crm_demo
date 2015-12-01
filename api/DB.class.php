@@ -96,5 +96,16 @@ class DB {
 
 	}
 
+	/**
+	 * Escapes problematic characters in strings intended for use in SQL.
+	 *
+	 * @param string $strField: the string
+	 *
+	 * @returns string: the escaped string
+	 */
+	function db_sanitize($strField) {
+		return mysqli_real_escape_string($this->conn, $strField);
+	}
+
 }
 
