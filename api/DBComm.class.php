@@ -20,7 +20,7 @@ class DBComm {
 	 */
 	function getOrganizationsFromDB() {
 	
-		$strSQL = 'SELECT * FROM organization';
+		$strSQL = 'SELECT * FROM organization ORDER BY org_name';
 		$results = $this->db->query($strSQL);	
 		
 		return $results;
@@ -33,7 +33,7 @@ class DBComm {
 	 */	
 	function getContactsFromDB() {
 	
-		$strSQL = 'SELECT * FROM contact';
+		$strSQL = 'SELECT * FROM contact ORDER BY firstname, lastname';
 		$results = $this->db->query($strSQL);
 	
 		return $results;
