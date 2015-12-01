@@ -224,7 +224,36 @@ function updateOrganization_callback(data) {
 }
 
 function deleteContact(objForm) {
-	alert('TO DO: deleteContact: '+objForm);
+
+	var iId = $(objForm).data('id');
+	var arrElements = $(objForm).children();
+	
+	var strURL  = 'api/index.php?action=delete_contact';
+		strURL += '&contact_id='+iId;	
+		
+	console.info('CALL: '+strURL);
+	
+	$.ajax({
+		url: strURL, 
+		success: function(result){
+			deleteContact_callback(result);
+		}
+	});
+
+	return;
+}
+
+function deleteContact_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshContacts(objResponse['contacts']);	
+	}
+	
 	return;
 }
 
