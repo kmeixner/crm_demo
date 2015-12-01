@@ -229,7 +229,36 @@ function deleteContact(objForm) {
 }
 
 function deleteOrganization(objForm) {
-	alert('TO DO: deleteOrganization: '+objForm);
+
+	var iId = $(objForm).data('id');
+	var arrElements = $(objForm).children();
+	
+	var strURL  = 'api/index.php?action=delete_organization';
+		strURL += '&org_id='+iId;	
+		
+	console.info('CALL: '+strURL);
+	
+	$.ajax({
+		url: strURL, 
+		success: function(result){
+			deleteOrganization_callback(result);
+		}
+	});
+
+	return;
+}
+
+function deleteOrganization_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshOrganizations(objResponse['organizations']);	
+	}
+	
 	return;
 }
 
