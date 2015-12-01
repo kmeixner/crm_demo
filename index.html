@@ -52,7 +52,7 @@ function displayContacts(arrContacts) {
 					<input class="field" name="lastname" type="text" placeholder="Last Name" required="required" /> \
 					<input class="field" name="email" type="email" placeholder="Email" required="required" /> \
 					<input class="field" name="phone" type="tel" placeholder="Phone Number" required="required" /> \
-					<input type="button" value="Add" onclick="addContact($(this).parent());" /> \
+					<input type="button" value="Create" onclick="addContact($(this).parent());" /> \
 					</form><br /> \
 				  ';
 	
@@ -70,8 +70,8 @@ function displayContacts(arrContacts) {
 					<input class="field" name="lastname" type="text" value="'+strLastname+'" required="required" /> \
 					<input class="field" name="email" type="email" value="'+strEmail+'" required="required" /> \
 					<input class="field" name="phone" type="tel" value="'+strPhone+'" required="required" /> \
-					<input type="button" value="Edit" onclick="updateContact($(this).parent());" /> \
-					<input type="button" value="Del" onclick="deleteContact($(this).parent());" /> \
+					<input type="button" value="Update" onclick="updateContact($(this).parent());" /> \
+					<input type="button" value="Delete" onclick="deleteContact($(this).parent());" /> \
 					</form> \
 					';
 					
@@ -112,9 +112,9 @@ function refreshOrganizations_callback(data) {
 function displayOrganizations(arrContacts) {
 
 	var strHTML = '<form class="addform"> \
-					<input class="field" name="org_name" type="text" placeholder="Name" required="required" /> \
+					<input class="field" name="org_name" type="text" placeholder="Organization Name" required="required" /> \
 					<input class="field" name="website" type="text" placeholder="Website" required="required" /> \
-					<input type="button" value="Add" onclick="addOrganization($(this).parent());" /> \
+					<input type="button" value="Create" onclick="addOrganization($(this).parent());" /> \
 					</form><br /> \
 				  ';
 	
@@ -128,8 +128,8 @@ function displayOrganizations(arrContacts) {
 					<input class="idfield" type="text" value="'+iID+'" disabled="disabled" /> \
 					<input class="field" style="left: 50px;" name="org_name" type="text" value="'+strOrgName+'" required="required" /> \
 					<input class="field" name="website" type="text" value="'+strWebsite+'" required="required" /> \
-					<input type="button" value="Edit" onclick="updateOrganization($(this).parent());" /> \
-					<input type="button" value="Del" onclick="deleteOrganization($(this).parent());" /> \
+					<input type="button" value="Update" onclick="updateOrganization($(this).parent());" /> \
+					<input type="button" value="Delete" onclick="deleteOrganization($(this).parent());" /> \
 					</form> \
 					';
 					
