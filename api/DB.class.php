@@ -103,7 +103,7 @@ class DB {
 	 *
 	 * @returns string: the escaped string
 	 */
-	function db_sanitize($strField) {
+	function sanitize($strField) {
 		return mysqli_real_escape_string($this->conn, $strField);
 	}
 
