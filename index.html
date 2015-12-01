@@ -33,7 +33,7 @@ body {
 </style>
 
 <script>
-var g = null;
+var G = null; // debug, to be removed
 
 $(document).ready(function(){
 	refreshContacts();
@@ -172,29 +172,41 @@ function updateContact(objForm) {
 	var iId = $(objForm).data('id');
 	var arrElements = $(objForm).children();
 	
-	g = arrElements;
-	
 	var strFirstName = $(arrElements[1]).val();
 	var strLastName = $(arrElements[2]).val();	
 	var strEmail = $(arrElements[3]).val();	
 	var strPhone = $(arrElements[4]).val();
 	
 	var strURL  = 'api/index.php?action=update_contact';
+		strURL += '&contact_id='+iId;	
 		strURL += '&firstname='+strFirstName;
 		strURL += '&lastname='+strLastName;
 		strURL += '&email='+strEmail;
 		strURL += '&phone='+strPhone;
 		
 	console.info('CALL: '+strURL);
-	return;
 	
 	$.ajax({
 		url: strURL, 
 		success: function(result){
-			refreshContacts_callback(result);
+			updateContacts_callback(result);
 		}
 	});	
 	
+	return;
+}
+
+function updateContacts_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshContacts(objResponse['contacts']);	
+	}
+
 	return;
 }
 
