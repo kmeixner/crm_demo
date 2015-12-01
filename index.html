@@ -211,7 +211,41 @@ function updateContacts_callback(data) {
 }
 
 function updateOrganization(objForm) {
-	alert('TO DO: updateOrganization: '+objForm);
+
+	var iId = $(objForm).data('id');
+	var arrElements = $(objForm).children();
+	
+	var strOrgName = $(arrElements[1]).val();
+	var strWebsite = $(arrElements[2]).val();	
+	
+	var strURL  = 'api/index.php?action=update_organization';
+		strURL += '&org_id='+iId;	
+		strURL += '&org_name='+strOrgName;
+		strURL += '&website='+strWebsite;
+		
+	console.info('CALL: '+strURL);
+	
+	$.ajax({
+		url: strURL, 
+		success: function(result){
+			updateOrganization_callback(result);
+		}
+	});
+
+	return;
+}
+
+function updateOrganization_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshOrganizations(objResponse['organizations']);	
+	}
+
 	return;
 }
 
