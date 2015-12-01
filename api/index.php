@@ -114,7 +114,7 @@ switch ($strAction) {
 		);
 		
 		if ($successful) {
-		  echo $objAPI->showMessage('Contact Deleted: '.$_REQUEST['id']);
+		  echo $objAPI->showMessage('Contact Deleted: '.$_REQUEST['org_id']);
 		}
 		else {
 		  echo $objAPI->showError($objAPI->getError());		
