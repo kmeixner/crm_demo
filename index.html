@@ -52,7 +52,7 @@ function displayContacts(arrContacts) {
 					<input name="lastname" type="text" placeholder="Last Name" required="required" /> \
 					<input name="email" type="email" placeholder="Email" required="required" /> \
 					<input name="phone" type="tel" placeholder="Phone Number" required="required" /> \
-					<button>Add</button> \
+					<input type="button" value="Add" onclick="addContact($(this).parent());" /> \
 					</form> \
 				  ';
 	
@@ -114,7 +114,7 @@ function displayOrganizations(arrContacts) {
 	var strHTML = '<form> \
 					<input name="org_name" type="text" placeholder="Name" required="required" /> \
 					<input name="website" type="text" placeholder="Website" required="required" /> \
-					<button>Add</button> \
+					<input type="button" value="Add" onclick="addOrganization($(this).parent());" /> \
 					</form> \
 				  ';
 	
@@ -138,6 +138,46 @@ function displayOrganizations(arrContacts) {
 	var objOrgDiv = document.getElementById('organizationArea');
 	objOrgDiv.innerHTML = strHTML;
 	
+	return;
+}
+
+function addContact(objForm) {
+
+	var arrElements = $(objForm).children();
+	
+	var strFirstName = $(arrElements[0]).val();
+	var strLastName = $(arrElements[1]).val();	
+	var strEmail = $(arrElements[2]).val();	
+	var strPhone = $(arrElements[3]).val();
+	
+	var strURL  = 'api/index.php?action=add_contact';
+		strURL += '&firstname='+strFirstName;
+		strURL += '&lastname='+strLastName;
+		strURL += '&email='+strEmail;
+		strURL += '&phone='+strPhone;
+		
+	console.info('CALL: '+strURL);
+	
+	$.ajax({
+		url: strURL, 
+		success: function(result){
+			addContacts_callback(result);
+		}
+	});	
+  
+}
+
+function addContacts_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshContacts(objResponse['contacts']);	
+	}
+
 	return;
 }
 
