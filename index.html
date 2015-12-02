@@ -117,11 +117,9 @@ function generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId) {
 function handleOrgChange(iOrgId, iContactId) {
 
 	if (0 == iOrgId) {
-		console.debug('0 path');
 		unlinkContact(iContactId);
 	}
 	else {
-		console.debug('non zero path');	
 		linkContact(iOrgId, iContactId);	
 	}
 
@@ -133,8 +131,6 @@ function linkContact(iOrgId, iContactId) {
 	var strURL  = 'api/index.php?action=link_contact';
 		strURL += '&contact_id='+iContactId;
 		strURL += '&org_id='+iOrgId;
-		
-	console.info(strURL);
 
 	$.ajax({
 		url: strURL,
@@ -261,8 +257,6 @@ function addContact(objForm) {
 		strURL += '&lastname='+strLastName;
 		strURL += '&email='+strEmail;
 		strURL += '&phone='+strPhone;
-		
-	console.info('CALL: '+strURL);
 	
 	$.ajax({
 		url: strURL, 
@@ -303,8 +297,6 @@ function updateContact(objForm) {
 		strURL += '&lastname='+strLastName;
 		strURL += '&email='+strEmail;
 		strURL += '&phone='+strPhone;
-		
-	console.info('CALL: '+strURL);
 	
 	$.ajax({
 		url: strURL, 
@@ -340,8 +332,6 @@ function addOrganization(objForm) {
 	var strURL  = 'api/index.php?action=add_organization';
 		strURL += '&org_name='+strOrgName;
 		strURL += '&website='+strWebsite;
-		
-	console.info('CALL: '+strURL);
 	
 	$.ajax({
 		url: strURL, 
@@ -378,8 +368,6 @@ function updateOrganization(objForm) {
 		strURL += '&org_id='+iId;	
 		strURL += '&org_name='+strOrgName;
 		strURL += '&website='+strWebsite;
-		
-	console.info('CALL: '+strURL);
 	
 	$.ajax({
 		url: strURL, 
@@ -412,8 +400,6 @@ function deleteContact(objForm) {
 	
 	var strURL  = 'api/index.php?action=delete_contact';
 		strURL += '&contact_id='+iId;	
-		
-	console.info('CALL: '+strURL);
 	
 	$.ajax({
 		url: strURL, 
@@ -446,8 +432,6 @@ function deleteOrganization(objForm) {
 	
 	var strURL  = 'api/index.php?action=delete_organization';
 		strURL += '&org_id='+iId;	
-		
-	console.info('CALL: '+strURL);
 	
 	$.ajax({
 		url: strURL, 
