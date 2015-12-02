@@ -38,3 +38,11 @@ ALTER TABLE org_contact ADD UNIQUE (
 	org_id,
 	contact_id
 );
+
+ALTER TABLE org_contact ADD UNIQUE (
+	org_id
+);
+
+ALTER TABLE org_contact ADD UNIQUE (
+	contact_id
+);
