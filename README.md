@@ -41,6 +41,10 @@ Due to time constraints and for simplicity of the demo the following assumptions
 * To assign an organization to a contact, select the desired organization from the organization drop-down beside the appropriate row.
 * To remove an organization to a contact, select "None" as the organization from the organization drop-down beside the appropriate row.
 
+**Other:**
+
+* A working version of this application can be found online [here](http://kevinmeixner.com/crm_demo/)
+
 
 
 
