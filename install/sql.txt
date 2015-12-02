@@ -29,14 +29,9 @@ CREATE TABLE org_contact (
 	id int NOT NULL AUTO_INCREMENT,
 	org_id int NOT NULL,
 	contact_id int NOT NULL,
-        PRIMARY KEY (id),
-	FOREIGN KEY (org_id) REFERENCES organization(id),
-	FOREIGN KEY (contact_id) REFERENCES contact(id)
-);
-
-ALTER TABLE org_contact ADD UNIQUE (
-	org_id,
-	contact_id
+	PRIMARY KEY (id),
+	FOREIGN KEY (org_id) REFERENCES organization(id) ON DELETE CASCADE,
+	FOREIGN KEY (contact_id) REFERENCES contact(id) ON DELETE CASCADE
 );
 
 ALTER TABLE org_contact ADD UNIQUE (
