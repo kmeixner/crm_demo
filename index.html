@@ -15,7 +15,18 @@ $(document).ready(function(){
 });
 
 function showError(strError) {
-	alert(strError);
+	
+	var objError = document.getElementById('error');
+	objError.innerHTML = 'Error: '+strError;
+	
+	return;
+}
+
+function clearError() {
+	
+	var objError = document.getElementById('error');
+	objError.innerHTML = '&nbsp;';
+	
 	return;
 }
 
