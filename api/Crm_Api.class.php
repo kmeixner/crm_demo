@@ -279,14 +279,14 @@ class Crm_Api {
 		return linkContactToOrgInDB($iContactId, $iOrgId);
 	}
 	
-	function unlinkContactFromOrg($iLinkId) {
+	function unlinkContactFromOrg($iContactId) {
 	
-		if (empty($iOrg)) {
-			$this->error = 'Unlink Contact From Organization: link id is required..';	
+		if (empty($iContactId)) {
+			$this->error = 'Unlink Contact From Organization: contact id is required..';	
 			return FALSE;
 		}	
 	
-		return unlinkContactFromOrgInDB($iLinkId);
+		return unlinkContactFromOrgInDB($iContactId);
 	}
 
 	/**

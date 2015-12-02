@@ -217,14 +217,14 @@ class DBComm {
 	}
 	
 	/**
-	 * Deletes an organization.
+	 * Unlinks the given contact from the organization.
 	 *
-	 * @param int $iId: the organization id (required)
+	 * @param int $iContactId: the contactId id (required)
 	 *
 	 * @returns boolean: TRUE if successful, FALSE otherwise
 	 */		
-	function unlinkContactFromOrgInDB($iLinkId) {
-		$sqlDELETE = "DELETE FROM org_contact WHERE id='".$this->db->sanitize($iLinkId)."'";
+	function unlinkContactFromOrgInDB($iContactId) {
+		$sqlDELETE = "DELETE FROM org_contact WHERE contact_idid='".$this->db->sanitize($iContactId)."'";
 		return $this->db->update($sqlDELETE);	
 	}
 	

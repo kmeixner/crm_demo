@@ -141,11 +141,11 @@ switch ($strAction) {
 	case 'unlink_contact':
 	
 		$successful = $objAPI->unlinkContactFromOrg(
-			$_REQUEST['link_id']
+			$_REQUEST['contact_id']
 		);
 		
 		if ($successful) {
-		  echo $objAPI->showMessage('Contact Unlinked: '.$_REQUEST['link_id']);
+		  echo $objAPI->showMessage('Contact Unlinked: '.$_REQUEST['contact_id']);
 		}
 		else {
 		  echo $objAPI->showError($objAPI->getError());		
