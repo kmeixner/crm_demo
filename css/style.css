@@ -20,6 +20,12 @@ body {
 	bottom: 0;
 }
 
+#error {
+	background-color: #cccccc;	
+	color: #ff0000;		
+	font-weight: bold;
+}
+
 .addform {
 	position: relative;
 	left: 33px;
