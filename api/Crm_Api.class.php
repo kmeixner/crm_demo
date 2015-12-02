@@ -66,21 +66,32 @@ class Crm_Api {
 	}
    
 	/**
-	 * Returns contact list and up-to-date 
+	 * Returns contact list and optionally also the up-to-date 
 	 * organization list;
 	 *
-	 * @returns JSON: contact list
+	 * @param boolean $blnReturnOrgs: (optional)(default: TRUE) if TRUE then
+	 * also return the up-to-date list of organizations
+	 *
+	 * @returns JSON: contact list (and org list if applicable)
 	 */   
-	function getContacts() {
+	function getContacts($blnReturnOrgs=TRUE) {
 	
 		$arrContacts = $this->dbcomm->getContactsFromDB();
-		$arrOrganizations = $this->dbcomm->getOrganizationsFromDB();
-		
-		 $arrJSON = array();
-		 $arrJSON['contacts'] = $arrContacts;
-		 $arrJSON['organizations'] = $arrOrganizations;		 
+				
+		if (!$blnReturnOrgs) {
+			return $this->jsonify(
+				'organizations', 
+				$arrContacts
+			);		
+		}
 
-		 return json_encode($arrJSON);		
+		$arrOrganizations = $this->dbcomm->getOrganizationsFromDB();
+
+		$arrJSON = array();
+		$arrJSON['contacts'] = $arrContacts;
+		$arrJSON['organizations'] = $arrOrganizations;		 
+
+		return json_encode($arrJSON);
 	}
 	
 	function addContact(
