@@ -131,6 +131,8 @@ function linkContact(iOrgId, iContactId) {
 	var strURL  = 'api/index.php?action=link_contact';
 		strURL += '&contact_id='+iContactId;
 		strURL += '&org_id='+iOrgId;
+		
+	console.debug(strURL);
 
 	$.ajax({
 		url: strURL,

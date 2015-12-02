@@ -198,6 +198,34 @@ class DBComm {
 		}
 	}
 	
+	function orgHasContactInDB($iOrgId) {
+	
+		$strSQL = "SELECT id FROM org_contact WHERE org_id='".$this->db->sanitize($iOrgId)."'";	
+		
+		$result = $this->db->query($strSQL);
+		
+		if (empty($result)) {
+			return FALSE;
+		}
+		else {
+			return TRUE;
+		}		
+	}
+	
+	function contactIsAssignedInDB($iContactId) {
+	
+		$strSQL = "SELECT id FROM org_contact WHERE contact_id='".$this->db->sanitize($iContactId)."'";	
+		
+		$result = $this->db->query($strSQL);
+		
+		if (empty($result)) {
+			return FALSE;
+		}
+		else {
+			return TRUE;
+		}	
+	}
+	
 	/**
 	 * Assigns a contact to an organization.
 	 *
