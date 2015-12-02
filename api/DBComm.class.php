@@ -209,8 +209,8 @@ class DBComm {
 	function linkContactToOrgInDB($iContactId, $iOrgId) {
 	
 		$strINSERT  = 'INSERT INTO org_contact (org_id, contact_id) VALUES ( ';
-		$strINSERT .= "'".$this->db->sanitize($iContactId)."'";
-		$strINSERT .= ",'".$this->db->sanitize($iOrgId)."'";
+		$strINSERT .= "'".$this->db->sanitize($iOrgId)."'";
+		$strINSERT .= ",'".$this->db->sanitize($iContactId)."'";
 		$strINSERT .= ')';
 
 		return $this->db->update($strINSERT);	

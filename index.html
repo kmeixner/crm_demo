@@ -117,9 +117,11 @@ function generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId) {
 function handleOrgChange(iOrgId, iContactId) {
 
 	if (0 == iOrgId) {
-		unlinkContact(iOrgId, iContactId);
+		console.debug('0 path');
+		unlinkContact(iContactId);
 	}
 	else {
+		console.debug('non zero path');	
 		linkContact(iOrgId, iContactId);	
 	}
 
@@ -127,12 +129,63 @@ function handleOrgChange(iOrgId, iContactId) {
 }
 
 function linkContact(iOrgId, iContactId) {
-	console.debug('handleOrgChange: org_id: '+iOrgId+', contact_id: '+iContactId);
+
+	var strURL  = 'api/index.php?action=link_contact';
+		strURL += '&contact_id='+iContactId;
+		strURL += '&org_id='+iOrgId;
+		
+	console.info(strURL);
+
+	$.ajax({
+		url: strURL,
+		success: function(result){
+			linkContact_callback(result);
+		}
+	});
+
 	return;
 }
 
-function unlinkContact(iOrgId, iContactId) {
-	console.debug('TO DO: unlink contact_id='+iContactId);
+function linkContact_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshContacts();
+	}
+	
+	return;
+}
+
+function unlinkContact(iContactId) {
+
+	var strURL  = 'api/index.php?action=unlink_contact';
+		strURL += '&contact_id='+iContactId;
+
+	$.ajax({
+		url: strURL,
+		success: function(result){
+			unlinkContact_callback(result);
+		}
+	});
+
+	return;
+}
+
+function unlinkContact_callback(data) {
+
+	var objResponse = JSON.parse(data);
+	
+	if (objResponse['successful'] && 'false' == objResponse['successful']) {
+		showError(objResponse['message']);
+	}
+	else {
+		refreshContacts();
+	}
+	
 	return;
 }
 

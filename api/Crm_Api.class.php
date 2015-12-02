@@ -276,7 +276,7 @@ class Crm_Api {
 			return FALSE;
 		}			
 	
-		return linkContactToOrgInDB($iContactId, $iOrgId);
+		return $this->dbcomm->linkContactToOrgInDB($iContactId, $iOrgId);
 	}
 	
 	function unlinkContactFromOrg($iContactId) {
@@ -286,7 +286,7 @@ class Crm_Api {
 			return FALSE;
 		}	
 	
-		return unlinkContactFromOrgInDB($iContactId);
+		return $this->dbcomm->unlinkContactFromOrgInDB($iContactId);
 	}
 
 	/**
