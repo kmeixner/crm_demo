@@ -26,6 +26,11 @@ body {
 	font-weight: bold;
 }
 
+.select_on {
+	background-color: #ffffff;
+	color: #cccccc;
+}
+
 #error {
 	background-color: #cccccc;	
 	color: #ff0000;		

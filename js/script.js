@@ -5,15 +5,23 @@ $(document).ready(function(){
 });
 
 function showContactArea() {
+
 	$('#orgsPanel').hide();
 	$('#contactsPanel').show();
+	
+	$('#lnkShowContacts').addClass('select_on');
+	$('#lnkShowOrgs').removeClass('select_on');
 	
 	return;
 }
 
 function showOrgsArea() {
+
 	$('#contactsPanel').hide();
 	$('#orgsPanel').show();
+	
+	$('#lnkShowContacts').removeClass('select_on');
+	$('#lnkShowOrgs').addClass('select_on');	
 	
 	return;
 }
