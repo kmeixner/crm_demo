@@ -39,13 +39,13 @@ function refreshContacts_callback(data) {
 		showError(objResponse['message']);
 	}
 	else {
-		displayContacts(objResponse['contacts']);	
+		displayContacts(objResponse['contacts'], objResponse['organizations']);	
 	}
 	
 	return;
 }
 
-function displayContacts(arrContacts) {
+function displayContacts(arrContacts, arrOrgs) {
 
 	var strHTML = '<form class="addform"> \
 					<input class="field" name="firstname" type="text" placeholder="First Name" required="required" /> \
@@ -55,6 +55,12 @@ function displayContacts(arrContacts) {
 					<input type="button" value="Create" onclick="addContact($(this).parent());" /> \
 					</form><br /> \
 				  ';
+				  
+	console.debug('contacts :');				  
+	console.debug(arrContacts);				  
+
+	console.debug('orgs :');				  
+	console.debug(arrOrgs);
 	
 	for (var x in arrContacts) {
 
@@ -63,6 +69,11 @@ function displayContacts(arrContacts) {
 		var strLastname = arrContacts[x]['lastname'];
 		var strEmail = arrContacts[x]['email'];
 		var strPhone = arrContacts[x]['phone'];
+		
+		var iLinkId = arrContacts[x]['link_id'];
+		var iOrgId = arrContacts[x]['org_id'];		
+		
+		var strOrgSelect = generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId);
 
 		strHTML += '<form data-id='+iID+'> \
 					<input class="idfield" type="text" value="'+iID+'" disabled="disabled" /> \
@@ -72,7 +83,7 @@ function displayContacts(arrContacts) {
 					<input class="field" name="phone" type="tel" value="'+strPhone+'" required="required" /> \
 					<input type="button" value="Update" onclick="updateContact($(this).parent());" /> \
 					<input type="button" value="Delete" onclick="deleteContact($(this).parent());" /> \
-					<span class="org_association" data-id='+iID+'></span> \
+					'+strOrgSelect+' \
 					</form> \
 					';
 					
@@ -82,6 +93,31 @@ function displayContacts(arrContacts) {
 	objContactDiv.innerHTML = strHTML;
 	
 	return;
+}
+
+function generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId) {
+
+	var strHTML  = '';
+		strHTML += '<select data-id="'+iID+'"><option value="0">None</option>';
+		
+	for (var x in arrOrgs) {
+	
+		var iCurrOrgId = arrOrgs[x]['id'];
+		var strOrgName = arrOrgs[x]['org_name'];		
+		
+		strHTML += '<option value="'+iCurrOrgId+'"';
+		
+		if (null != iOrgId && iOrgId == iCurrOrgId) {
+			strHTML += ' selected="selected"';
+		}
+		
+		strHTML += '>'+strOrgName+'</option>';
+	}
+		
+		
+	strHTML += '</select>';
+		
+	return strHTML;
 }
 
 function refreshOrganizations() {
