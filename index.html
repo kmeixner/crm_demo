@@ -56,11 +56,10 @@ function displayContacts(arrContacts, arrOrgs) {
 					</form><br /> \
 				  ';
 				  
-	console.debug('contacts :');				  
-	console.debug(arrContacts);				  
-
-	console.debug('orgs :');				  
-	console.debug(arrOrgs);
+//	console.debug('contacts :');				  
+//	console.debug(arrContacts);				  
+//	console.debug('orgs :');				  
+//	console.debug(arrOrgs);
 	
 	for (var x in arrContacts) {
 
@@ -83,7 +82,7 @@ function displayContacts(arrContacts, arrOrgs) {
 					<input class="field" name="phone" type="tel" value="'+strPhone+'" required="required" /> \
 					<input type="button" value="Update" onclick="updateContact($(this).parent());" /> \
 					<input type="button" value="Delete" onclick="deleteContact($(this).parent());" /> \
-					'+strOrgSelect+' \
+					Organization: '+strOrgSelect+' \
 					</form> \
 					';
 					
@@ -98,7 +97,7 @@ function displayContacts(arrContacts, arrOrgs) {
 function generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId) {
 
 	var strHTML  = '';
-		strHTML += '<select data-id="'+iID+'"><option value="0">None</option>';
+		strHTML += '<select data-id="'+iID+'" onchange="handleOrgChange($(this).val(), '+iID+');"><option value="0">None</option>';
 		
 	for (var x in arrOrgs) {
 	
@@ -118,6 +117,28 @@ function generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId) {
 	strHTML += '</select>';
 		
 	return strHTML;
+}
+
+function handleOrgChange(iOrgId, iContactId) {
+
+	if (0 == iOrgId) {
+		unlinkContact(iOrgId, iContactId);
+	}
+	else {
+		linkContact(iOrgId, iContactId);	
+	}
+
+	return;
+}
+
+function unlinkContact(iOrgId, iContactId) {
+	console.debug('TO DO: unlink contact_id='+iContactId);
+	return;
+}
+
+function linkContact(iOrgId, iContactId) {
+	console.debug('handleOrgChange: org_id: '+iOrgId+', contact_id: '+iContactId);
+	return;
 }
 
 function refreshOrganizations() {
