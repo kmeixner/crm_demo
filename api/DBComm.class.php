@@ -33,7 +33,11 @@ class DBComm {
 	 */	
 	function getContactsFromDB() {
 	
-		$strSQL = 'SELECT * FROM contact ORDER BY firstname, lastname';
+		$strSQL  = 'SELECT contact.id, contact.firstname, contact.lastname, contact.email, contact.phone, org_contact.id AS link_id, org_contact.org_id';
+		$strSQL .= ' FROM contact';
+		$strSQL .= ' LEFT JOIN org_contact ON contact.id = org_contact.contact_id';
+		$strSQL .= ' ORDER BY firstname, lastname';
+
 		$results = $this->db->query($strSQL);
 	
 		return $results;
