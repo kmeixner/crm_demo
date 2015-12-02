@@ -66,16 +66,21 @@ class Crm_Api {
 	}
    
 	/**
-	 * Returns contact list.
+	 * Returns contact list and up-to-date 
+	 * organization list;
 	 *
 	 * @returns JSON: contact list
 	 */   
 	function getContacts() {
 	
-		return $this->jsonify(
-			'contacts', 
-			$this->dbcomm->getContactsFromDB()
-		);
+		$arrContacts = $this->dbcomm->getContactsFromDB();
+		$arrOrganizations = $this->dbcomm->getOrganizationsFromDB();
+		
+		 $arrJSON = array();
+		 $arrJSON['contacts'] = $arrContacts;
+		 $arrJSON['organizations'] = $arrOrganizations;		 
+
+		 return json_encode($arrJSON);		
 	}
 	
 	function addContact(
