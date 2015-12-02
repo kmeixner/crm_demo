@@ -32,6 +32,8 @@ function clearError() {
 
 function refreshContacts() {
 
+	clearError();
+
 	$.ajax({
 		url: "api/index.php?action=fetch_contacts", 
 		success: function(result){
@@ -127,6 +129,8 @@ function generateOrgSelect(iID, arrOrgs, iLinkId, iOrgId) {
 
 function handleOrgChange(iOrgId, iContactId) {
 
+	clearError();
+
 	if (0 == iOrgId) {
 		unlinkContact(iContactId);
 	}
@@ -138,6 +142,8 @@ function handleOrgChange(iOrgId, iContactId) {
 }
 
 function linkContact(iOrgId, iContactId) {
+
+	clearError();
 
 	var strURL  = 'api/index.php?action=link_contact';
 		strURL += '&contact_id='+iContactId;
@@ -169,6 +175,8 @@ function linkContact_callback(data) {
 
 function unlinkContact(iContactId) {
 
+	clearError();
+
 	var strURL  = 'api/index.php?action=unlink_contact';
 		strURL += '&contact_id='+iContactId;
 
@@ -197,6 +205,8 @@ function unlinkContact_callback(data) {
 }
 
 function refreshOrganizations() {
+
+	clearError();
 
 	$.ajax({
 		url: "api/index.php?action=fetch_organizations", 
@@ -256,6 +266,8 @@ function displayOrganizations(arrContacts) {
 
 function addContact(objForm) {
 
+	clearError();
+
 	var arrElements = $(objForm).children();
 	
 	var strFirstName = $(arrElements[0]).val();
@@ -293,6 +305,8 @@ function addContact_callback(data) {
 }
 
 function updateContact(objForm) {
+
+	clearError();
 
 	var iId = $(objForm).data('id');
 	var arrElements = $(objForm).children();
@@ -335,6 +349,8 @@ function updateContact_callback(data) {
 
 function addOrganization(objForm) {
 
+	clearError();
+
 	var arrElements = $(objForm).children();
 	
 	var strOrgName= $(arrElements[0]).val();
@@ -368,6 +384,8 @@ function addOrganization_callback(data) {
 }
 
 function updateOrganization(objForm) {
+
+	clearError();
 
 	var iId = $(objForm).data('id');
 	var arrElements = $(objForm).children();
@@ -406,6 +424,8 @@ function updateOrganization_callback(data) {
 
 function deleteContact(objForm) {
 
+	clearError();
+
 	var iId = $(objForm).data('id');
 	var arrElements = $(objForm).children();
 	
@@ -437,6 +457,8 @@ function deleteContact_callback(data) {
 }
 
 function deleteOrganization(objForm) {
+
+	clearError();
 
 	var iId = $(objForm).data('id');
 	var arrElements = $(objForm).children();
