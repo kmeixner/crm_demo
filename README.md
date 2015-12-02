@@ -34,4 +34,13 @@ Due to time constraints and for simplicity of the demo the following assumptions
 
 **How to Use:**
 
+* To toggle between Contacts and Organizations view, click the words "Contacts" and "Organizations" in the menu bar at the top of the page
+* To create a new contact/organization, fill out the fields at the top of the contacts/organizations list and click the [Create] button
+* To Edit an existing contact/organization, edit the fields in the list displayed and then click the [Update] button
+* To Delete an existing contact/organization click the [Delete] button in the appropriate list row
+* To assign an organization to a contact, select the desired organization from the organization drop-down beside the appropriate row.
+* To remove an organization to a contact, select "None" as the organization from the organization drop-down beside the appropriate row.
+
+
+
 
