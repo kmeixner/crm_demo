@@ -1,7 +1,22 @@
 $(document).ready(function(){
 	refreshContacts();
-	refreshOrganizations();	
+	refreshOrganizations();
+	showContactArea();
 });
+
+function showContactArea() {
+	$('#orgsPanel').hide();
+	$('#contactsPanel').show();
+	
+	return;
+}
+
+function showOrgsArea() {
+	$('#contactsPanel').hide();
+	$('#orgsPanel').show();
+	
+	return;
+}
 
 function showError(strError) {
 	

@@ -20,6 +20,12 @@ body {
 	bottom: 0;
 }
 
+#topmenu {
+	background-color: #00004c;
+	color: #ffffff;
+	font-weight: bold;
+}
+
 #error {
 	background-color: #cccccc;	
 	color: #ff0000;		
