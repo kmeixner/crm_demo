@@ -264,17 +264,17 @@ class Crm_Api {
 		);		
 	}
 	
-	function linkContactToOrg($iContactId, $iOrg) {
+	function linkContactToOrg($iContactId, $iOrgId) {
 	
 		if (empty($iContactId)) {
 			$this->error = 'Link Contact To Organization: contact id is required..';	
 			return FALSE;
 		}
 
-		if (empty($iOrg)) {
+		if (empty($iOrgId)) {
 			$this->error = 'Link Contact To Organization: organization id is required..';	
 			return FALSE;
-		}			
+		}
 	
 		return $this->dbcomm->linkContactToOrgInDB($iContactId, $iOrgId);
 	}
