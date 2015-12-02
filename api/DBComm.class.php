@@ -224,7 +224,7 @@ class DBComm {
 	 * @returns boolean: TRUE if successful, FALSE otherwise
 	 */		
 	function unlinkContactFromOrgInDB($iContactId) {
-		$sqlDELETE = "DELETE FROM org_contact WHERE contact_idid='".$this->db->sanitize($iContactId)."'";
+		$sqlDELETE = "DELETE FROM org_contact WHERE contact_id='".$this->db->sanitize($iContactId)."'";
 		return $this->db->update($sqlDELETE);	
 	}
 	
