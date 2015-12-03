@@ -102,27 +102,27 @@ class Crm_Api {
 	) {
 	
 		if (empty($strFirstname)) {
-			$this->error = 'Add Contact: Firstname is a required parameter';
+			$this->error = 'Firstname is a required parameter';
 			return FALSE;
 		}
 		
 		if (empty($strLastname)) {
-			$this->error = 'Add Contact: Lastname is a required parameter';
+			$this->error = 'Lastname is a required parameter';
 			return FALSE;
 		}
 
 		if (empty($strEmail)) {
-			$this->error = 'Add Contact: email is a required parameter';
+			$this->error = 'Email is a required parameter';
 			return FALSE;
 		}
 
 		if (empty($strPhone)) {
-			$this->error = 'Add Contact: phone is a required parameter';
+			$this->error = 'Phone Number is a required parameter';
 			return FALSE;
 		}	
 
 		if ($this->dbcomm->emailExistInContactsInDB($strEmail)) {
-			$this->error = 'Add Contact: that email is already in use by another contact.';
+			$this->error = 'That email is already in use by another contact.';
 			return FALSE;		
 		}		
 	
@@ -134,7 +134,7 @@ class Crm_Api {
 		);
 		
 		if (empty($iId)) {
-			$this->error = 'Add Contact: There was a problem adding the contact to the database.';
+			$this->error = 'There was a problem adding the contact to the database.';
 			return FALSE;
 		}
 		
@@ -147,12 +147,12 @@ class Crm_Api {
 	) {
 	
 		if (empty($strOrgName)) {
-			$this->error = 'Add Organization: organization is a required parameter';
+			$this->error = 'Organization is a required parameter';
 			return FALSE;
 		}
 
 		if (empty($strWebsite)) {
-			$this->error = 'Add Organization: website is a required parameter';
+			$this->error = 'Website is a required parameter';
 			return FALSE;
 		}		
 
@@ -162,7 +162,7 @@ class Crm_Api {
 		);
 		
 		if (empty($iId)) {
-			$this->error = 'Add Organization: There was a problem adding the organization to the database.';
+			$this->error = 'There was a problem adding the organization to the database.';
 			return FALSE;
 		}
 
@@ -172,7 +172,7 @@ class Crm_Api {
 	function deleteContact($iId) {
 	
 		if (empty($iId)) {
-			$this->error = 'Delete Contact: Invalid parameters received.';			
+			$this->error = 'Invalid delete parameters received.';			
 			return FALSE;
 		}
 		
@@ -182,7 +182,7 @@ class Crm_Api {
 	function deleteOrganization($iId) {
 	
 		if (empty($iId)) {
-			$this->error = 'Delete Organization: Invalid parameters received.';	
+			$this->error = 'Invalid delete parameters received.';	
 			return FALSE;
 		}
 	
@@ -198,32 +198,32 @@ class Crm_Api {
 	) {
 	
 		if (empty($iId)) {
-			$this->error = 'Update Contact: Invalid parameters received.';	
+			$this->error = 'Invalid parameters received.';	
 			return FALSE;
 		}
 
 		if (empty($strFirstname)) {
-			$this->error = 'Add Contact: Firstname is a required parameter';
+			$this->error = 'Firstname is a required parameter';
 			return FALSE;
 		}
 		
 		if (empty($strLastname)) {
-			$this->error = 'Add Contact: Lastname is a required parameter';
+			$this->error = 'Lastname is a required parameter';
 			return FALSE;
 		}
 
 		if (empty($strEmail)) {
-			$this->error = 'Add Contact: email is a required parameter';
+			$this->error = 'Email is a required parameter';
 			return FALSE;
 		}
 
 		if (empty($strPhone)) {
-			$this->error = 'Add Contact: phone is a required parameter';
+			$this->error = 'Phone Number is a required parameter';
 			return FALSE;
 		}
 		
 		if ($this->dbcomm->emailExistInContactsInDB($strEmail, $iId)) {
-			$this->error = 'Add Contact: that email is already in use by another contact.';
+			$this->error = 'That email is already in use by another contact.';
 			return FALSE;		
 		}			
 
@@ -243,17 +243,17 @@ class Crm_Api {
 	) {
 	
 		if (empty($iId)) {
-			$this->error = 'Update Organization: Invalid parameters received.';	
+			$this->error = 'Invalid parameters received.';	
 			return FALSE;
 		}
 
 		if (empty($strOrgName)) {
-			$this->error = 'Update Organization: Organization is a required parameter';
+			$this->error = 'Organization is a required parameter';
 			return FALSE;
 		}
 
 		if (empty($strWebsite)) {
-			$this->error = 'Update Organization: Website is a required parameter';
+			$this->error = 'Website is a required parameter';
 			return FALSE;
 		}
 
@@ -267,24 +267,24 @@ class Crm_Api {
 	function linkContactToOrg($iContactId, $iOrgId) {
 	
 		if (empty($iContactId)) {
-			$this->error = 'Link Contact To Organization: contact id is required.';	
+			$this->error = 'Contact id is required.';	
 			return FALSE;
 		}
 
 		if (empty($iOrgId)) {
-			$this->error = 'Link Contact To Organization: organization id is required.';
+			$this->error = 'Organization id is required.';
 			return FALSE;
 		}
+
+		if ($this->dbcomm->contactIsAssignedInDB($iContactId)) {
+			$this->error = 'That contact is already assigned to an organization.';		
+			return FALSE;
+		}			
 		
 		if ($this->dbcomm->orgHasContactInDB($iOrgId)) {
-			$this->error = 'Link Contact To Organization: There is another contact already assigned for that organization.';		
+			$this->error = 'There is another contact already assigned for that organization.';		
 			return FALSE;
 		}
-		
-		if ($this->dbcomm->contactIsAssignedInDB($iContactId)) {
-			$this->error = 'Link Contact To Organization: That contact is already assigned to an organization.';		
-			return FALSE;
-		}		
 	
 		return $this->dbcomm->linkContactToOrgInDB($iContactId, $iOrgId);
 	}
@@ -292,7 +292,7 @@ class Crm_Api {
 	function unlinkContactFromOrg($iContactId) {
 	
 		if (empty($iContactId)) {
-			$this->error = 'Unlink Contact From Organization: contact id is required.';	
+			$this->error = 'Contact id is required.';	
 			return FALSE;
 		}	
 	
