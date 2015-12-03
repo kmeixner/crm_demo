@@ -275,12 +275,9 @@ class Crm_Api {
 			$this->error = 'Organization id is required.';
 			return FALSE;
 		}
-
-		if ($this->dbcomm->contactIsAssignedInDB($iContactId)) {
-			$this->error = 'That contact is already assigned to an organization.';		
-			return FALSE;
-		}			
 		
+		$this->unlinkContactFromOrg($iContactId); // clear any old association
+
 		if ($this->dbcomm->orgHasContactInDB($iOrgId)) {
 			$this->error = 'There is another contact already assigned for that organization.';		
 			return FALSE;
